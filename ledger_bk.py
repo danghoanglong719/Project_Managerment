@@ -35,7 +35,7 @@ def update(id,name,user,password,category,cdate):
 def delete(id):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("DELETE FROM account WHERE id=?",(id,))
+    cur.execute("DELETE FROM account WHERE id=?", (id,))
     con.commit()
     con.close()
 create()
