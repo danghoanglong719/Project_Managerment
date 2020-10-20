@@ -12,7 +12,7 @@ window.title("Account Ledger")
 def view_command():
     lb.delete(0,END)
     for row in ledger_bk.viewall():
-        lb.insert(END,row)
+        lb.insert(END, row)
 
 def search_command():
     lb.delete(0,END)
