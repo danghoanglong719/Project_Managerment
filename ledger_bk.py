@@ -8,7 +8,7 @@ def create():
 def viewall():
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("SELECT * FROM account")
+    cur.execute("SELECT * FROM account ORDER BY id DESC")
     rows = cur.fetchall()
     con.close()
     return rows
