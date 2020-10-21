@@ -2,21 +2,21 @@ import sqlite3
 def create():
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS account(id INTEGER PRIMARY KEY,name TEXT,user TEXT, password TEXT,category TEXT,cdate TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS account(id INTEGER PRIMARY KEY, user TEXT, password TEXT, date TEXT, sodu TEXT, time TEXT)")
     con.commit()
     con.close()
 def viewall():
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("SELECT * FROM account")
+    cur.execute("SELECT * FROM account ORDER BY id DESC")
     rows = cur.fetchall()
     con.close()
     return rows
 
-def search(name="",user="",password="",category=""):
+def search(user=""):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("SELECT * FROM account WHERE name=? OR user=? OR password=? OR category=?",(name,user,password,category))
+    cur.execute("SELECT * FROM account WHERE user=? ", (user,))
     rows = cur.fetchall()
     con.close()
     return rows
@@ -35,7 +35,7 @@ def update(id,name,user,password,category,cdate):
 def delete(id):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("DELETE FROM account WHERE id=?",(id,))
+    cur.execute("DELETE FROM account WHERE id=?", (id,))
     con.commit()
     con.close()
 create()
