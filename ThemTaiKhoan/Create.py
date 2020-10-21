@@ -13,7 +13,6 @@ def add(date, user, password, price, time):
     con.commit()
     con.close()
 
-
 def add_sub():
     tg = price.get() / 5000
     add(date.get(), user.get(), password.get(), price.get(), tg)
