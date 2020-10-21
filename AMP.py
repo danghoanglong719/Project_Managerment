@@ -1,12 +1,14 @@
 from tkinter import *
 from tkinter import ttk
 import ledger_bk
+import Create
 
 window = Tk()
 window.title("PM2020")
 window.geometry("800x520")
 window.configure(bg="#99CCFF")
 window.resizable(False, False)
+
 
 lb1 = Label(window, text="Account Management", bg="#6699FF", fg='black',
             font="Oswald 16 bold italic",
@@ -33,15 +35,18 @@ def search_command():
     del_all()
     for row in ledger_bk.search(user=user.get()):
         tview.insert('', 'end', values=row)
+def add_command():
+    Create.create()
+    view_command()
 
 #Buttons
-btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13).grid(row=0, column=0)
+btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13, command=add_command).grid(row=0, column=0)
 btnUpd = Button(frame1, text="Update", font="Merriweather 12 bold", width=13).grid(row=0, column=1)
 btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13).grid(row=0, column=2)
 btnVie = Button(frame1, text="View All", font="Merriweather 12 bold", width=13, command=view_command).grid(row=0, column=5)
 
 
-#Frame chua treeview
+#Frame chứa treeview
 frame2 = ttk.Frame(window, borderwidth=5, relief="groove", width=780, height=50)
 frame2.grid(row=2, column=0, columnspan=5, pady=7)
 
@@ -54,13 +59,13 @@ etSearch = Entry(frame2, textvariable='user', width=40).grid(row=0, column=1, pa
 #TREEVIEW
 tview = ttk.Treeview(frame2)
 #Define Columns
-tview['columns'] = ("ID", "Username", "Password", "Date", "Price", "Time")
+tview['columns'] = ("ID", "Username", "Password", "Date", "Balance", "Time")
 tview.column('#0', width=0, stretch=NO)
 tview.column("ID", width=50, minwidth=50, anchor=W)
 tview.column("Username",  width=130, minwidth=31)
 tview.column("Password", width=130, minwidth=31)
 tview.column("Date", width=130, minwidth=31)
-tview.column("Price", width=130, minwidth=31, anchor=W)
+tview.column("Balance", width=130, minwidth=31, anchor=W)
 tview.column("Time", width=130, minwidth=31, anchor=CENTER)
 
 tview.heading("#0", text="")
@@ -68,10 +73,13 @@ tview.heading("ID", text="ID", anchor=W)
 tview.heading("Username", text="Username")
 tview.heading("Password", text="Password")
 tview.heading("Date", text="Date")
-tview.heading("Price", text="Price")
+tview.heading("Balance", text="Balance")
 tview.heading("Time", text="Time")
 tview.grid(row=2, column=0, columnspan=5, rowspan=5, ipady=60)
+
+#Create screen
 
 
 show_data()
 window.mainloop()
+

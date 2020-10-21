@@ -2,7 +2,7 @@ import sqlite3
 def create():
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS account(id INTEGER PRIMARY KEY, user TEXT, password TEXT, date TEXT, sodu TEXT, time TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS account(id INTEGER PRIMARY KEY, user TEXT, password TEXT, date TEXT, balance TEXT, time TEXT)")
     con.commit()
     con.close()
 def viewall():
@@ -20,10 +20,10 @@ def search(user=""):
     rows = cur.fetchall()
     con.close()
     return rows
-def add(name,user,password,category,cdate):
-    con = sqlite3.connect("aledger.db")
+def add(user, password, date, balance, time):
+    con = sqlite3.connect('aledger.db')
     cur = con.cursor()
-    cur.execute("INSERT INTO account VALUES(NULL,?,?,?,?,?)",(name,user,password,category,cdate))
+    cur.execute("INSERT INTO account VALUES(NULL,?,?,?,?,?)", (user, password, date, balance, time))
     con.commit()
     con.close()
 def update(id,name,user,password,category,cdate):
