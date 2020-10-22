@@ -1,4 +1,5 @@
 import sqlite3
+from tkinter import messagebox
 def create():
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
@@ -21,11 +22,11 @@ def search(user):
     con.close()
     return rows
 def add(user, password, date, balance, time):
-    con = sqlite3.connect('aledger.db')
-    cur = con.cursor()
-    cur.execute("INSERT INTO account VALUES(NULL,?,?,?,?,?)", (user, password, date, balance, time))
-    con.commit()
-    con.close()
+        con = sqlite3.connect('aledger.db')
+        cur = con.cursor()
+        cur.execute("INSERT INTO account VALUES(NULL,?,?,?,?,?)", (user, password, date, balance, time))
+        con.commit()
+        con.close()
 def update(id,name,user,password,category,cdate):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
@@ -36,6 +37,12 @@ def delete(id):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
     cur.execute("DELETE FROM account WHERE id=?", (id,))
+    con.commit()
+    con.close()
+def checkuser():
+    con = sqlite3.connect("aledger.db")
+    cur = con.cursor()
+    cur.execute("SELECT user FROM account")
     con.commit()
     con.close()
 create()

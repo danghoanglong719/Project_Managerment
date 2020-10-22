@@ -39,10 +39,13 @@ def add_command():
     Create.create()
     view_command()
 
+def del_command():
+    print("chuaxong")
+
 #Buttons
 btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13, command=add_command).grid(row=0, column=0)
 btnUpd = Button(frame1, text="Update", font="Merriweather 12 bold", width=13).grid(row=0, column=1)
-btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13).grid(row=0, column=2)
+btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13, command=del_command).grid(row=0, column=2)
 btnVie = Button(frame1, text="View All", font="Merriweather 12 bold", width=13, command=view_command).grid(row=0, column=5)
 
 

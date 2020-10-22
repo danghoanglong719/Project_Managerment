@@ -7,9 +7,14 @@ def create():
     root.title("Create Account")
 
     def add_sub():
-        tg = balance.get() / 5000
-        ledger_bk.add(user.get(), password.get(), date.get(), balance.get(), tg)
-        root.destroy()
+        try:
+            tg = balance.get() / 5000
+            ledger_bk.add(user.get(), password.get(), date.get(), balance.get(), tg)
+            root.destroy()
+            messagebox.showinfo('Thông báo', 'Thêm thành công')
+        except:
+            messagebox.showinfo('Thông báo', 'Username trung ')
+
 
     lb1 = Label(root, text="Create Account ", bg="#6699FF", fg='black',
                 font="Oswald 16 bold italic",
