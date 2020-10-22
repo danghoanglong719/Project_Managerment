@@ -35,4 +35,3 @@ def create():
     btnKO = Button(root, width=15, text="Cancel", command=root.quit).grid(row=5, column=1)
 
     root.mainloop()
-create()

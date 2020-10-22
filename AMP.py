@@ -55,7 +55,7 @@ btnSea = Button(frame2, text="Search",font="Merriweather 8 bold ", width=13, bg=
 lbSearch = Label(frame2, text="Username").grid(row=0, column=0, pady=7)
 
 user = StringVar()
-etSearch = Entry(frame2, textvariable='user', width=40).grid(row=0, column=1, pady=7)
+etSearch = Entry(frame2, textvariable=user, width=40).grid(row=0, column=1, pady=7)
 #TREEVIEW
 tview = ttk.Treeview(frame2)
 #Define Columns
@@ -79,7 +79,7 @@ tview.grid(row=2, column=0, columnspan=5, rowspan=5, ipady=60)
 
 #Create screen
 
-
+print(user.get())
 show_data()
 window.mainloop()
 

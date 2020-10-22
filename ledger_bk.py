@@ -13,7 +13,7 @@ def viewall():
     con.close()
     return rows
 
-def search(user=""):
+def search(user):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
     cur.execute("SELECT * FROM account WHERE user=? ", (user,))
