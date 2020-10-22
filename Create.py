@@ -3,13 +3,13 @@ import datetime
 import ledger_bk
 import sqlite3
 def create():
-    root = Tk()
+    root = Toplevel()
     root.title("Create Account")
 
     def add_sub():
         tg = balance.get() / 5000
         ledger_bk.add(user.get(), password.get(), date.get(), balance.get(), tg)
-        root.quit()
+        root.destroy()
 
     lb1 = Label(root, text="Create Account ", bg="#6699FF", fg='black',
                 font="Oswald 16 bold italic",
@@ -32,6 +32,4 @@ def create():
     lb1date = Label(root, text=date.get()).grid(row=4, column=1)
 
     btnOK = Button(root, width=15, text="Accept", command=add_sub).grid(row=5, column=0)
-    btnKO = Button(root, width=15, text="Cancel", command=root.quit).grid(row=5, column=1)
-
-    root.mainloop()
+    btnKO = Button(root, width=15, text="Cancel", command=root.destroy).grid(row=5, column=1)
