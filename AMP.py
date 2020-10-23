@@ -40,12 +40,15 @@ def add_command():
     view_command()
 
 def del_command():
-    item = tview.item(tview.focus())
-    print(item)
+    item = tview.item(tview.focus(), 'values')
+    id = item[0]
+    ledger_bk.delete(id)
+    view_command()
+
 
 #Buttons
 btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13, command=add_command).grid(row=0, column=0)
-btnUpd = Button(frame1, text="Update", font="Merriweather 12 bold", width=13).grid(row=0, column=1)
+btnUpd = Button(frame1, text="Update", font="Merriweather 12 bold", width=13, command=update_command).grid(row=0, column=1)
 btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13, command=del_command).grid(row=0, column=2)
 btnVie = Button(frame1, text="View All", font="Merriweather 12 bold", width=13, command=view_command).grid(row=0, column=5)
 
@@ -81,9 +84,6 @@ tview.heading("Balance", text="Balance")
 tview.heading("Time", text="Time")
 tview.grid(row=2, column=0, columnspan=5, rowspan=5, ipady=60)
 
-#Create screen
-
-print(user.get())
 show_data()
 window.mainloop()
 
