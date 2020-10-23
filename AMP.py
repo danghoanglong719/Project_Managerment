@@ -40,7 +40,8 @@ def add_command():
     view_command()
 
 def del_command():
-    print("chuaxong")
+    item = tview.item(tview.focus())
+    print(item)
 
 #Buttons
 btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13, command=add_command).grid(row=0, column=0)
