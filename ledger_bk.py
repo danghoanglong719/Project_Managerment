@@ -17,7 +17,7 @@ def viewall():
 def search(user):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("SELECT * FROM account WHERE user=? ", (user,))
+    cur.execute("SELECT * FROM account WHERE user LIKE ? ", ('%'+user+'%',))
     rows = cur.fetchall()
     con.close()
     return rows
