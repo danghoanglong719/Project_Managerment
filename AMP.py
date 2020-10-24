@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 import ledger_bk
 import Create
+import Update
 
 window = Tk()
 window.title("PM2020")
@@ -41,10 +43,21 @@ def add_command():
 
 def del_command():
     item = tview.item(tview.focus(), 'values')
-    id = item[0]
-    ledger_bk.delete(id)
-    view_command()
+    if(item == ""):
+        pass
+    else:
+        id = item[0]
+        ledger_bk.delete(id)
+        view_command()
+        messagebox.showinfo('Message', 'Success!')
 
+def update_command():
+    item = tview.item(tview.focus(), 'values')
+    if (item == ""):
+        pass
+    else:
+        Update.update(item)
+        view_command()
 
 #Buttons
 btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13, command=add_command).grid(row=0, column=0)

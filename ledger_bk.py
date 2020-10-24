@@ -27,22 +27,16 @@ def add(user, password, date, balance, time):
         cur.execute("INSERT INTO account VALUES(NULL,?,?,?,?,?)", (user, password, date, balance, time))
         con.commit()
         con.close()
-def update(id,name,user,password,category,cdate):
+def update(id, user, password, balance, time):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("UPDATE account SET name=?,user=?,password=?,category=?,cdate=? WHERE id=?",(name,user,password,category,cdate,id))
+    cur.execute("UPDATE account SET user=?,password=?, balance=?, time=? WHERE id=?",(user, password, balance, time, id))
     con.commit()
     con.close()
 def delete(id):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
     cur.execute("DELETE FROM account WHERE id=?", (id,))
-    con.commit()
-    con.close()
-def checkuser():
-    con = sqlite3.connect("aledger.db")
-    cur = con.cursor()
-    cur.execute("SELECT user FROM account")
     con.commit()
     con.close()
 create()
