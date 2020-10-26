@@ -10,11 +10,11 @@ window = Tk()
 window.title("Account Ledger")
 
 def view_command():
-    lb.delete(0,END)
+    lb.delete(0,END)S
     for row in ledger_bk.viewall():
         lb.insert(END,row)
 
-def search_command():
+def search_command()
     lb.delete(0,END)
     for row in ledger_bk.search(name=name.get(),user=user.get(),password=password.get(),category=category.get()):
         lb.insert(END,row)
