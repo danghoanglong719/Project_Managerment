@@ -1,5 +1,6 @@
 import sqlite3
 from tkinter import messagebox
+import hashlib
 def create():
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
@@ -40,10 +41,19 @@ def delete(id):
     con.commit()
     con.close()
 
+
+def md5pass(var):
+    varutf = var.encode("utf-8")
+    hash = hashlib.md5(varutf)
+    hexa = hash.hexdigest()
+    print (hexa)
+    return hexa
+
 def reset(id, password):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
-    cur.execute("UPDATE account SET password=? WHERE id=?",(password,id))
+    newpass = md5pass(password)
+    cur.execute("UPDATE account SET password=? WHERE id=?",(newpass,id))
     con.commit()
     con.close()
 

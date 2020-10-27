@@ -1,4 +1,5 @@
 from tkinter import *
+import hashlib
 import datetime
 import ledger_bk
 import sqlite3
@@ -6,10 +7,18 @@ def create():
     root = Toplevel()
     root.title("Create Account")
 
+    def md5pass(var):
+        varutf = var.encode("utf-8")
+        hash = hashlib.md5(varutf)
+        hexa = hash.hexdigest()
+        print(hexa)
+        return hexa
+
     def add_sub():
         try:
             tg = balance.get() / 5000
-            ledger_bk.add(user.get(), password.get(), date.get(), balance.get(), tg)
+            newpassword = md5pass(password.get())
+            ledger_bk.add(user.get(), newpassword, date.get(), balance.get(), tg)
             root.destroy()
             messagebox.showinfo('Message', 'Success!')
         except:
