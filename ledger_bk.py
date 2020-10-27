@@ -39,5 +39,13 @@ def delete(id):
     cur.execute("DELETE FROM account WHERE id=?", (id,))
     con.commit()
     con.close()
+
+def reset(id, password):
+    con = sqlite3.connect("aledger.db")
+    cur = con.cursor()
+    cur.execute("UPDATE account SET password=? WHERE id=?",(password,id))
+    con.commit()
+    con.close()
+
 create()
 #print(search(category="social"))

@@ -58,12 +58,22 @@ def update_command():
     else:
         Update.update(item)
         view_command()
+def Reset_command():
+    item = tview.item(tview.focus(), 'values')
+    if (item == ""):
+        pass
+    else:
+        id = item[0]
+        ledger_bk.reset(id,1)
+        view_command()
+        messagebox.showinfo('Message', 'Reset Success!')
 
 #Buttons
 btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13, command=add_command).grid(row=0, column=0)
 btnUpd = Button(frame1, text="Update", font="Merriweather 12 bold", width=13, command=update_command).grid(row=0, column=1)
 btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13, command=del_command).grid(row=0, column=2)
 btnVie = Button(frame1, text="View All", font="Merriweather 12 bold", width=13, command=view_command).grid(row=0, column=5)
+btnRse = Button(frame1, text="Reset", font="Merriweather 12 bold", width=13, command=Reset_command).grid(row=0, column=6)
 
 
 #Frame chứa treeview
