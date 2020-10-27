@@ -41,6 +41,13 @@ def add_command():
     Create.create()
     view_command()
 
+def delete_clicked():
+    res = messagebox.askquestion('Thông báo', ' bạn có thực sự muốn xóa nó không?')
+    if res == 'yes':
+        del_command()
+    else:
+        messagebox.showinfo('Thông báo', 'hủy thao tác')
+
 def del_command():
     item = tview.item(tview.focus(), 'values')
     if(item == ""):
@@ -49,7 +56,7 @@ def del_command():
         id = item[0]
         ledger_bk.delete(id)
         view_command()
-        messagebox.showinfo('Message', 'Success!')
+        messagebox.showinfo('Message', 'Delete Success!')
 
 def update_command():
     item = tview.item(tview.focus(), 'values')
@@ -71,7 +78,7 @@ def Reset_command():
 #Buttons
 btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13, command=add_command).grid(row=0, column=0)
 btnUpd = Button(frame1, text="Update", font="Merriweather 12 bold", width=13, command=update_command).grid(row=0, column=1)
-btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13, command=del_command).grid(row=0, column=2)
+btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13, command=delete_clicked).grid(row=0, column=2)
 btnVie = Button(frame1, text="View All", font="Merriweather 12 bold", width=13, command=view_command).grid(row=0, column=5)
 btnRse = Button(frame1, text="Reset", font="Merriweather 12 bold", width=13, command=Reset_command).grid(row=0, column=6)
 
