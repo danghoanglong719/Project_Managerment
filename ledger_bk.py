@@ -40,13 +40,6 @@ def delete(id):
     con.commit()
     con.close()
 
-def delete_clicked():
-    res = messagebox.askquestion('Thông báo', ' bạn có thực sự muốn xóa nó không?')
-    if res == 'yes':
-        delete_command()
-    else:
-        messagebox.showinfo('Thông báo', 'hủy thao tác')
-
 def reset(id, password):
     con = sqlite3.connect("aledger.db")
     cur = con.cursor()
