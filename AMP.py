@@ -7,7 +7,7 @@ import Create
 import Update
 
 window = Tk()
-window.title("PM2020")
+window.title("ACM 2020")
 window.geometry("800x520")
 window.configure(bg="#99CCFF")
 window.resizable(False, False)
@@ -42,22 +42,20 @@ def add_command():
     Create.create()
     view_command()
 
-def delete_clicked():
-    res = messagebox.askquestion('Thông báo', ' bạn có thực sự muốn xóa nó không?')
-    if res == 'yes':
-        del_command()
-    else:
-        messagebox.showinfo('Thông báo', 'hủy thao tác')
-
 def del_command():
     item = tview.item(tview.focus(), 'values')
     if(item == ""):
         pass
     else:
-        id = item[0]
-        ledger_bk.delete(id)
-        view_command()
-        messagebox.showinfo('Message', 'Delete Success!')
+        res = messagebox.askquestion('Thông báo', 'Bạn có thực sự muốn xóa không?')
+        if res == 'yes':
+            id = item[0]
+            ledger_bk.delete(id)
+            view_command()
+            messagebox.showinfo('Message', 'Delete Success!')
+        else:
+            messagebox.showinfo('Thông báo', 'Cancel')
+
 
 def update_command():
     item = tview.item(tview.focus(), 'values')
@@ -71,23 +69,21 @@ def Reset_command():
     if (item == ""):
         pass
     else:
-        id = item[0]
-        ledger_bk.reset(id,'1')
-        view_command()
-        messagebox.showinfo('Message', 'Reset Success!')
-def Reset_clicked():
-    res = messagebox.askquestion('Thông báo', ' bạn có thực sự muốn reset mật khẩu cho tài khoản này không?')
-    if res == 'yes':
-        Reset_command()
-    else:
-        messagebox.showinfo('Thông báo', 'hủy thao tác')
+        res = messagebox.askquestion('Thông báo', 'Bạn có thực sự muốn reset mật khẩu cho tài khoản này không?')
+        if res == 'yes':
+            id = item[0]
+            ledger_bk.reset(id, '1')
+            view_command()
+            messagebox.showinfo('Message', 'Reset Success!')
+        else:
+            messagebox.showinfo('Thông báo', 'Cancel')
 
 #Buttons
 btnAdd = Button(frame1, text="Add", font="Merriweather 12 bold", width=13, command=add_command).grid(row=0, column=0)
 btnUpd = Button(frame1, text="Update", font="Merriweather 12 bold", width=13, command=update_command).grid(row=0, column=1)
-btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13, command=delete_clicked).grid(row=0, column=2)
+btnDel = Button(frame1, text="Delete", font="Merriweather 12 bold", width=13, command=del_command).grid(row=0, column=2)
 btnVie = Button(frame1, text="View All", font="Merriweather 12 bold", width=13, command=view_command).grid(row=0, column=5)
-btnRse = Button(frame1, text="Reset", font="Merriweather 12 bold", width=13, command=Reset_clicked).grid(row=0, column=6)
+btnRse = Button(frame1, text="Reset", font="Merriweather 12 bold", width=13, command=Reset_command).grid(row=0, column=6)
 
 
 #Frame chứa treeview
