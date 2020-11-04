@@ -7,4 +7,4 @@ ACM application helps cyber gaming, coffee net to save and manage accounts. The 
 
 | Old interface  | New interface |
 | ------------- | ------------- |
-| ![picture](img/front.jpg)  | ![picture](img/ACMmain.jpg)  |
+| ![picture](img/front.JPG)  | ![picture](img/ACMmain.jpg)  |
